@@ -1,19 +1,31 @@
 function decompress(compressedImg, method, k, h)
-    img = imread(compressedImg);
+    [img1, map1] = imread(compressedImg);
+    [img2, map2] = rgb2ind(img1);
+    image = ind2rgb(img2, map2);
 
     % getting values
-    n = size(img, 1);
+    n = size(image, 1);
     p = n + (n - 1) * k;
 
-    
+    decompressedImg = zeros(p, p, 3);
 
-    % idea: make a for loop to increase the lines and a separate one to increase the columns
-    for(i = 1: n)
-        if(rem(i, 2) == 0)
-            newImg(:, i) = img(:, i);
-            newImg(i, :) = img(i, :);
+    % make the image bigger so we can interpolate
+    linNova = 1;
+    colNova = 1;
+    for(i = 1: p)
+        if(rem(i, k + 1) == 0)
+            for(j = 1: p)
+                if(rem(j, k + 1) == 0)
+                    decompressedImg(i, j, 1) = image(linNova, colNova, 1);
+                    decompressedImg(i, j, 2) = image(linNova, colNova, 2);
+                    decompressedImg(i, j, 3) = image(linNova, colNova, 3);
+                    colNova = colNova + 1;
+                endif
+            endfor
+            colNova = 1;
+            linNova = linNova + 1;
         endif
     endfor
 
-    imwrite(img, "decompressed.png");
+    imwrite(decompressedImg, "decompressed.png");
 end
