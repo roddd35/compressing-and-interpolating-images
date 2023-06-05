@@ -1,4 +1,5 @@
 function r = compress(originalImg, k)
+tic
     [img1, map1] = imread(originalImg);
     [img2, map2] = rgb2ind(img1);
     image = ind2rgb(img2, map2); 
@@ -24,5 +25,6 @@ function r = compress(originalImg, k)
     endfor
 
     imwrite(compressedImage, "compressed.png");
+    toc
     return;
 end

@@ -1,4 +1,5 @@
 function decompress(compressedImg, method, k, h)
+    tic
     [img1, map1] = imread(compressedImg);
     [img2, map2] = rgb2ind(img1);
     image = ind2rgb(img2, map2);
@@ -29,6 +30,7 @@ function decompress(compressedImg, method, k, h)
 
         imwrite(decompressedImg, "bicubic_dec.png");
     endif
+    toc
 end
 
 % function to calculate the bilinear interpolation

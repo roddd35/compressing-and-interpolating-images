@@ -2,7 +2,7 @@ function res = generateImage(dim)
     image = zeros(dim, dim, 3);
     x = 45;
     y = 30;
-    h = 100;
+    h = 50;
 
     for(i = 1: dim)
         for(j = 1: dim)
@@ -12,7 +12,7 @@ function res = generateImage(dim)
         endfor
     endfor
 
-    imwrite(image, "generatedImg2.png");
+    imwrite(image, "generatedImg3.png");
 endfunction
 
 function r = R(x, y)
@@ -21,11 +21,11 @@ function r = R(x, y)
 endfunction
 
 function g = G(x, y)
-    g = (tan(y) + sinh(x)) / 2;
+    g = (sin(y) + sin(x))/2;
     return;
 endfunction
 
 function b = B(x, y)
-    b = sin(x) * sin(x);
+    b = sin(x);
     return;
 endfunction
