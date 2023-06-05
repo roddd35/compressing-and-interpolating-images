@@ -14,9 +14,7 @@ function r = compress(originalImg, k)
         if(rem(i, k + 1) == 0)
             for(j = 1: p)
                 if(rem(j, k + 1) == 0)
-                    compressedImage(linNova, colNova, 1) = image(i, j, 1);
-                    compressedImage(linNova, colNova, 2) = image(i, j, 2);
-                    compressedImage(linNova, colNova, 3) = image(i, j, 3);
+                    compressedImage(linNova, colNova, :) = image(i, j, :);
                     colNova = colNova + 1;    % column on the new image only adds when it passes the condition
                 endif
             endfor
